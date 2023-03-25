@@ -1,12 +1,16 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 const app = express();
+const port = process.env.PORT || 8080;
 
-app.get('/', (request, response) => {
-  console.log('Hello World');
-  return response.json({ message: 'Hello World' });
+app.get('/', (_req: Request, res: Response) => {
+  return res.send('Hello world!');
 });
 
-app.listen(3333, () => {
-  console.log('Server started on port 3333!');
+app.get('/ping', (_req: Request, res: Response) => {
+  return res.send('pong 🏓');
+});
+
+app.listen(port, () => {
+  return console.log(`Server is listening on ${port}`);
 });
