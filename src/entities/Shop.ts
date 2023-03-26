@@ -1,5 +1,5 @@
 import { BasicEntity } from './Base';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
 import { IsInt, Max, Min } from 'class-validator';
 import { User } from './User';
 import { Product } from './Product';
@@ -13,7 +13,10 @@ export class Shop extends BasicEntity {
   name: string;
 
   // one to one relation with user
-  @OneToOne(() => User)
+  @OneToOne(() => User, {
+    cascade: true,
+  })
+  @JoinColumn()
   owner: User;
 
   // one to many relation with products

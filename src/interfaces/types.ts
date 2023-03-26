@@ -1,4 +1,5 @@
 // generate 12 different types of products
+import { Shop } from '../entities/Shop';
 export type productCategory =
   | 'food'
   | 'clothes'
@@ -12,5 +13,9 @@ export type productCategory =
   | 'movies'
   | 'music'
   | 'other';
+
+export interface ShopWithCategories extends Shop {
+  categories: productCategory[];
+}
 
 export type userType = 'admin' | 'user';

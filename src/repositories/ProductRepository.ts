@@ -9,6 +9,13 @@ export class ProductRepository {
       where: {
         id,
       },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        category: true,
+        price: true,
+      },
     });
   }
 
@@ -20,6 +27,15 @@ export class ProductRepository {
       },
       relations: {
         products: true,
+      },
+      select: {
+        products: {
+          id: true,
+          name: true,
+          description: true,
+          category: true,
+          price: true,
+        },
       },
     });
     return shop.products;
@@ -129,6 +145,13 @@ export class ProductRepository {
           id: shopId,
         },
         category,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        category: true,
+        price: true,
       },
     });
   }

@@ -11,37 +11,30 @@ async function getProductsByShop(shopId: string): Promise<Response> {
       data: products,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
 async function getProductById(id: string): Promise<Response> {
   try {
     const product = await ProductRepository.getProduct(id);
+    if (!product) throw new Error('Product not found');
     return {
       statusCode: 200,
       data: product,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
 async function createProduct(
-  shopId: string,
   name: string,
   description: string,
   category: productCategory,
   price: number,
   userId: string,
+  shopId: string,
 ): Promise<Response> {
   try {
     // check if user is admin
@@ -58,11 +51,7 @@ async function createProduct(
       data: product,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
@@ -84,11 +73,7 @@ async function updateProduct(
       data: product,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
@@ -102,11 +87,7 @@ async function deleteProduct(id: string, userId: string, shopId: string): Promis
       data: 'Product deleted',
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
@@ -118,11 +99,7 @@ async function searchProducts(shopId: string, query: string): Promise<Response> 
       data: products,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
@@ -137,11 +114,7 @@ async function getProductsByCategory(shopId: string, category: string): Promise<
       data: products,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 

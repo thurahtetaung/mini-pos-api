@@ -5,10 +5,11 @@ import { UserRepository } from '../repositories/UserRepository';
 // wrap admin only controllers with this function
 export async function adminOnly(userId: string, shopId: string) {
   const user = await UserRepository.getUserById(userId);
-  if (user.userType !== 'admin') {
+  console.log(user);
+  if (!user || user.userType !== 'admin') {
     throw new Error('Unauthorized');
   }
-  if (user.shop.id !== shopId) {
+  if (!user.shop.id || user.shop.id !== shopId) {
     throw new Error('Unauthorized');
   }
   return true;

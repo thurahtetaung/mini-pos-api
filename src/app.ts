@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { router as shopRoutes } from './routes/shopRoutes';
 import { router as productRoutes } from './routes/productRoutes';
 import { router as userRoutes } from './routes/userRoutes';
+import { seed } from './entities/seeder';
 
 const app = express();
 const port = 8080;
@@ -15,7 +16,8 @@ app.use('/product', productRoutes);
 app.use('/user', userRoutes);
 
 export async function start() {
-  app.listen(port, () => {
+  app.listen(port, async () => {
+    await seed();
     return console.log(`Server is listening on ${port}`);
   });
 }

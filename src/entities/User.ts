@@ -18,7 +18,8 @@ export class User extends BasicEntity {
   @Column()
   userType: userType;
 
-  // one to one relation with shop but nullable
-  @OneToOne(() => Shop, (shop) => shop.owner, { nullable: true })
+  @OneToOne(() => Shop, (shop) => shop.owner, {
+    nullable: true,
+  })
   shop: Shop;
 }

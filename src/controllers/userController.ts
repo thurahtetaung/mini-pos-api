@@ -23,27 +23,19 @@ async function login(email: string, password: string): Promise<Response> {
       },
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 
-async function register(email: string, password: string): Promise<Response> {
+async function register(email: string, password: string, userType: string): Promise<Response> {
   try {
-    const user = await UserRepository.register(email, password);
+    const user = await UserRepository.register(email, password, userType);
     return {
       statusCode: 200,
       data: user,
     };
   } catch (err) {
-    console.log(err.message);
-    return {
-      statusCode: 500,
-      error: err.message,
-    };
+    throw err;
   }
 }
 

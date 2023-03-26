@@ -5,6 +5,7 @@ import { AppDataSource } from './data-source';
 dotenv.config();
 
 async function main() {
+  console.log('Starting server...');
   await AppDataSource.initialize();
   await AppDataSource.synchronize();
   await app.start();

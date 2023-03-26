@@ -1,3 +1,4 @@
+import { userType } from '../interfaces/types';
 import { User } from '../entities/User';
 import * as crypto from 'crypto';
 
@@ -15,6 +16,11 @@ export class UserRepository {
           email,
           passwordHash: hash,
         },
+        select: {
+          id: true,
+          email: true,
+          userType: true,
+        },
       });
       return user;
     } catch (err) {
@@ -23,7 +29,7 @@ export class UserRepository {
     }
   }
 
-  static async register(email: string, password: string): Promise<User> {
+  static async register(email: string, password: string, userType: string): Promise<User> {
     try {
       // hash password
       const hash = crypto
@@ -33,7 +39,7 @@ export class UserRepository {
       const user = User.create({
         email,
         passwordHash: hash,
-        userType: 'user',
+        userType: userType as userType,
       });
       await user.save();
       return user;
