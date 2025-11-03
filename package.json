@@ -20,7 +20,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.10.0",
-    "typeorm": "^0.3.12",
+    "typeorm": "^0.3.26",
     "typescript": "^5.0.2"
   },
   "devDependencies": {
